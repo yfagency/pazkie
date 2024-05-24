@@ -27,7 +27,7 @@
         "button"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/f34ebeba4c2a1f538a50ac2449fce1e6.jpg",
+        "image": "shopify:\/\/shop_images\/hero-banner.webp",
         "image_overlay_opacity": 40,
         "image_height": "adapt",
         "desktop_content_position": "middle-right",
@@ -41,28 +41,44 @@
       }
     },
     "find_your_flavor": {
-      "type": "find-your-flavor"
+      "type": "find-your-flavor",
+      "settings": {
+      }
     },
     "new_flavors": {
-      "type": "new-flavors"
+      "type": "new-flavors",
+      "settings": {
+      }
     },
     "testimonials": {
-      "type": "testimonials"
+      "type": "testimonials",
+      "settings": {
+      }
     },
     "nutritional-info": {
-      "type": "nutritional-info"
+      "type": "nutritional-info",
+      "settings": {
+      }
     },
     "try-now": {
-      "type": "try-now"
+      "type": "try-now",
+      "settings": {
+      }
     },
     "reviews": {
-      "type": "reviews"
+      "type": "reviews",
+      "settings": {
+      }
     },
     "instagram": {
-      "type": "instagram"
+      "type": "instagram",
+      "settings": {
+      }
     },
     "happiness-cta": {
-      "type": "happiness-cta"
+      "type": "happiness-cta",
+      "settings": {
+      }
     }
   },
   "order": [

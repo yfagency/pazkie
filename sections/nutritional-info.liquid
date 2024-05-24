@@ -1,15 +1,22 @@
 <style>
   .nutritionalInfo {
-    display: grid;
-    grid-template-columns: 600px 1fr;
     background: #5B00ED;
   }
 
-  .nutritionalInfo img {
-    width: 100%;
+  .nutritionalInfo__container {
+    display: grid;
+    grid-template-columns: 600px 1fr;
+    max-width: 1700px;
+    margin: 0 auto;
   }
 
-  .nutritionalInfo>div {
+  .nutritionalInfo img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .nutritionalInfo__container>div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,19 +48,22 @@
 </style>
 
 <section class="nutritionalInfo">
-  <div>
+  <div class="nutritionalInfo__container">
     <div>
-      <h2>High<br />Protein</h2>
-      <p>12g-14g complete protein in every bowl.</p>
+      <div>
+        <h2>High<br />Protein</h2>
+        <p>12g-14g complete protein in every bowl.</p>
+      </div>
+      <div>
+        <h2>Keto-<br />Friendly</h2>
+        <p>4g-5g net carbs per bowl.</p>
+      </div>
+      <div>
+        <h2>Sweet &<br />Delicious</h2>
+        <p>Tastes just like you remember, only better.</p>
+      </div>
     </div>
-    <div>
-      <h2>Keto-<br />Friendly</h2>
-      <p>4g-5g net carbs per bowl.</p>
-    </div>
-    <div>
-      <h2>Sweet &<br />Delicious</h2>
-      <p>Tastes just like you remember, only better.</p>
-    </div>
+    <img
+      src="https://cdn.shopify.com/s/files/1/0689/6717/0276/files/c2ecfdfb35dc81062af59565cb1cba14.jpg?v=1715924303" />
   </div>
-  <img src="https://cdn.shopify.com/s/files/1/0689/6717/0276/files/c2ecfdfb35dc81062af59565cb1cba14.jpg?v=1715924303" />
 </section>

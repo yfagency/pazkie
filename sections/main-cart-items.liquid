@@ -447,13 +447,45 @@
       >
         {{ 'accessibility.loading' | t }}
       </p>
-      <div>
-        <label for="custom-notes">Custom Notes:</label>
-    <textarea id="custom-notes" name="note"></textarea>
-      </div>
     </form>
   </div>
 </cart-items>
+
+<!-- Checkbox for adding instructions -->
+<div>
+  <input type="checkbox" id="add-instructions-checkbox" />
+  <label for="add-instructions-checkbox">Add instructions</label>
+</div>
+
+<!-- Textarea for custom notes, initially hidden -->
+<div id="instructions-container" style="display:none;">
+  <label for="custom-instructions">Instructions:</label>
+  <textarea id="custom-instructions" name="note"></textarea>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const checkbox = document.getElementById('add-instructions-checkbox');
+  const instructionsContainer = document.getElementById('instructions-container');
+  const noteField = document.getElementById('custom-instructions');
+  const cartForm = document.querySelector('form[action="/cart"]');
+
+  checkbox.addEventListener('change', function() {
+    if (checkbox.checked) {
+      instructionsContainer.style.display = 'block';
+    } else {
+      instructionsContainer.style.display = 'none';
+      noteField.value = '';
+    }
+  });
+
+  cartForm.addEventListener('submit', function(event) {
+    if (!checkbox.checked) {
+      noteField.value = '';
+    }
+  });
+});
+</script>
 
 {% schema %}
 {

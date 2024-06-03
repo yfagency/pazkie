@@ -464,24 +464,45 @@
 </div>
 
 <script>
-fetch('/cart/update.js', {
+document.addEventListener('DOMContentLoaded', function() {
+  const checkbox = document.getElementById('add-instructions-checkbox');
+  const instructionsContainer = document.getElementById('instructions-container');
+  const noteField = document.getElementById('custom-instructions');
+
+  checkbox.addEventListener('change', function() {
+    if (checkbox.checked) {
+      instructionsContainer.style.display = 'block';
+    } else {
+      instructionsContainer.style.display = 'none';
+      noteField.value = '';
+    }
+  });
+
+  noteField.addEventListener('change', function(event) {
+    event.preventDefault();
+    
+    const note = noteField.value;
+
+    fetch('/cart/update.js', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
       body: JSON.stringify({
-        note: "stuff"
+        note: note
       })
     })
     .then(response => response.json())
     .then(data => {
       console.log('Cart updated:', data);
       // Optionally, update the UI to reflect changes or redirect to the checkout
-      
     })
     .catch(error => console.error('Error updating cart:', error));
+  });
+});
 </script>
+
 
 
 {% schema %}

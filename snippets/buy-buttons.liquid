@@ -75,7 +75,7 @@
               assign quantity_rule_soldout = true
             endif
           -%}
-          <button
+          {% comment %} <button
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
             name="add"
@@ -88,17 +88,46 @@
               {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
                 {{ 'products.product.sold_out' | t }}
               {%- else -%}
-                {{ 'products.product.add_to_cart' | t }}
+                add to el cart
               {%- endif -%}
             </span>
             {%- render 'loading-spinner' -%}
-          </button>
+          </button> {% endcomment %}
+
           {%- if show_dynamic_checkout -%}
             {{ form | payment_button }}
           {%- endif -%}
         </div>
       {%- endform -%}
     </product-form>
+    <form id="add-to-cart-form-x">
+    <!-- Input fields for variant ID and quantity -->
+    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+    <input type="number" name="quantity" value="1" min="1">
+    <button type="submit">Add to Cart</button>
+</form>
+          
+<script>
+    document.getElementById('add-to-cart-form-x').addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent form submission
+        const formData = new FormData(event.target);
+        const response = await fetch('/cart/add.js', {
+            method: 'POST',
+            body: JSON.stringify({ items: [{ id: {{ product.selected_or_first_available_variant.id }}, quantity: 1, properties: { cart_index: {{ cart.item_count }} } }] }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (response.ok) {
+            // Handle success (e.g., show a success message)
+            console.log('Product added to cart successfully!');
+        } else {
+            // Handle error (e.g., show an error message)
+            console.error('Error adding product to cart.');
+        }
+    });
+</script>
   {%- else -%}
     <div class="product-form">
       <div class="product-form__buttons form">

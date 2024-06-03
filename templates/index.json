@@ -79,6 +79,10 @@
       "type": "happiness-cta",
       "settings": {
       }
+    },
+    "news-carousel": {
+      "type": "news-carousel",
+      "settings": {}
     }
   },
   "order": [
@@ -90,6 +94,7 @@
     "try-now",
     "reviews",
     "instagram",
-    "happiness-cta"
+    "happiness-cta",
+    "news-carousel"
   ]
 }

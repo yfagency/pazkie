@@ -1,0 +1,59 @@
+<style>
+  .home__newsCarousel_container {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 80px 0;
+  }
+
+  .home__newsCarousel_cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 80px;
+  }
+
+  .home__newsCarousel_badge {
+    background: #000;
+    color: #fff;
+    padding: 4px 8px;
+    display: inline-block;
+  }
+
+  .news-metaobject.campaign h3 {
+    color: red;
+  }
+
+  .news-metaobject.new-product h3 {
+    color: blue;
+  }
+
+  .news-metaobject.news h3 {
+    color: green;
+  }
+</style>
+
+<section class="home__newsCarousel">
+  <div class="home__newsCarousel_container">
+    <h2>News</h2>
+
+  <div class="home__newsCarousel_cards">
+    {% for custom_blocks in shop.metaobjects.custom_blocks.values %}
+      {% if custom_blocks.featured == true %}
+        <div class="news-metaobject {{custom_blocks.category.value.category.value}}">
+          <span class="home__newsCarousel_badge">Featured</span>
+          <h3>{{ custom_blocks.title.value }}</h3>
+          <p>{{ custom_blocks.description.value }}</p>
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    {% for custom_blocks in shop.metaobjects.custom_blocks.values %}
+      {% if custom_blocks.featured != true %}
+        <div class="news-metaobject {{custom_blocks.category.value.category.value}}">
+          <h3>{{ custom_blocks.title.value }}</h3>
+          <p>{{ custom_blocks.description.value }}</p>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  </div>
+</section>

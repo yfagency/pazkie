@@ -1,3 +1,22 @@
+<style>
+  .gradient {
+    background: none !important;
+  }
+
+  main#MainContent {
+    background: #d9ffed;
+    padding-top: 150px;
+  }
+
+  .header_menu svg {
+    fill: #3f0791;
+  }
+
+  .header_menu a {
+    color: #3f0791;
+  }
+</style>
+
 {{ 'component-cart.css' | asset_url | stylesheet_tag }}
 {{ 'component-cart-items.css' | asset_url | stylesheet_tag }}
 {{ 'component-totals.css' | asset_url | stylesheet_tag }}
@@ -451,17 +470,20 @@
   </div>
 </cart-items>
 
-<!-- Checkbox for adding instructions -->
-<div>
-  <input type="checkbox" id="add-instructions-checkbox" />
-  <label for="add-instructions-checkbox">Add instructions</label>
-</div>
+{% if cart.item_count > 0 %}
+  <!-- Checkbox for adding instructions -->
+  <div class="page-width">
+    <div style="border: thin solid #ccc; display: inline-block; padding: 8px 16px; border-radius: 8px; font-weight: 500;">
+      <input type="checkbox" id="add-instructions-checkbox" />
+      <label for="add-instructions-checkbox">Add instructions</label>
+    </div>
+  </div>
 
-<!-- Textarea for custom notes, initially hidden -->
-<div id="instructions-container" style="display:none;">
-  <label for="custom-instructions">Instructions:</label>
-  <textarea id="custom-instructions" name="note"></textarea>
-</div>
+  <!-- Textarea for custom notes, initially hidden -->
+  <div class="page-width" id="instructions-container" style="display:none;">
+    <textarea style="background: none; border: thin solid #ccc; display: inline-block; padding: 8px 16px; border-radius: 8px; margin-top: 8px;" id="custom-instructions" name="note"></textarea>
+  </div>
+{% endif %}
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

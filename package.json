@@ -1,0 +1,11 @@
+{
+  "name": "pazkie",
+  "version": "1.0.0",
+  "main": "",
+  "scripts": {
+    "start": "shopify theme dev --store=pazkie"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

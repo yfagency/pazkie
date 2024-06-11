@@ -25,6 +25,23 @@
     margin-left: -1.2rem;
   }
 
+  .header_menu svg {
+    fill: white;
+  }
+
+  .header_menu .header__logo svg {
+    width: 155px;
+  }
+
+  .header__actions {
+    display: flex;
+    gap: 16px;
+  }
+
+  .header__actions svg {
+    height: 25px;
+  }
+
     {
     %- if section.settings.sticky_header_type=='reduce-logo-size' -%
   }
@@ -160,7 +177,7 @@ endfor
     <div class="header_menu">
       <div><a>Variety</a></div>
 
-      <img src="{{ settings.logo | image_url}}" />
+      <a class="header__logo" href="/">{% include 'inline-logo-svg' %}</a>
 
       <div>
         <a>Treats</a>
@@ -189,9 +206,18 @@ endfor
             </localization-form>
             {%- endif -%}
           </div>
-          <img src="https://cdn.shopify.com/s/files/1/0689/6717/0276/files/Link_-_Account_page_SVG.svg?v=1716365989" />
-          <div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
-          <img src="https://cdn.shopify.com/s/files/1/0689/6717/0276/files/Link_-_Open_cart_SVG.svg?v=1716446084" />
+          <div class="header__actions">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 25" class="gradienthover">
+            <defs>
+              <linearGradient id="grad2" x1="50%" y1="0%" x2="50%" y2="100%">
+                <stop offset="0%" style="stop-color:#d034a2;stop-opacity:1"><animate attributeName="stop-color" values="#d034a2; #5222e3; #d034a2;" dur="5s" repeatCount="indefinite"></animate></stop>
+              </linearGradient>
+            </defs>
+            <path d="M12.24 12.1A6.62 6.62 0 0 0 15 5.17a7.19 7.19 0 0 0-5-5 6.61 6.61 0 0 0-5.2 11.89 1.2 1.2 0 0 1-.11 2.08A8.56 8.56 0 0 0 0 21.77V25h17.1v-3.23a8.53 8.53 0 0 0-4.68-7.62c-.99-.51-1.1-1.43-.18-2.05z"></path>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 34.41 25"><defs><linearGradient id="cart-gradient" y1="12.5" x2="34.41" y2="12.5" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ff80fd"></stop><stop offset="0.53" stop-color="#a63af4"></stop><stop offset="1" stop-color="#5b00ed"></stop></linearGradient></defs><g><path class="header-cart-path" d="M17.2,0C7.7,0,0,.89,0,2V4.16c0,.6,2.26,1.13,5.83,1.5V22.09C5.83,23.7,10.92,25,17.2,25s11.37-1.3,11.37-2.91V5.66c3.57-.37,5.84-.9,5.84-1.5V2C34.41.89,26.7,0,17.2,0Zm0,4C10.73,4,5.48,3.39,5.48,2.65S10.73,1.32,17.2,1.32s11.72.6,11.72,1.33S23.68,4,17.2,4Z"></path></g>
+            </svg>
+          </div>
         </div>
       </div>
     </div>

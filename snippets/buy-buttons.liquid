@@ -1,3 +1,27 @@
+<style>
+  @keyframes loading {
+    0% {
+      transform:rotate(3deg)
+    } 100% {
+      transform: rotate(-3deg);
+    }
+  }
+
+  .addToCart__button {
+    margin-top: 8px;
+    font-weight: 500;
+    width: fit-content;
+  }
+
+  .loading {
+    animation-name: loading;
+    animation-duration: .1s;
+    animation-direction: alternate-reverse;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+</style>
+
 {% comment %}
   Renders product buy-buttons.
   Accepts:
@@ -100,15 +124,32 @@
         </div>
       {%- endform -%}
     </product-form>
+    <p>Custom add to cart</p>
     <form id="add-to-cart-form-x">
     <!-- Input fields for variant ID and quantity -->
     <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
     <input type="number" name="quantity" value="1" min="1">
     <button type="submit">Add to Cart</button>
-</form>
+    </form>
+    <span style="display: none;" class="addToCart__button loading" id="addToCart__loader">Loading...</span>
+    <span style="display: none; color: green;" class="addToCart__button" id="addToCart__success">Success 😊</span>
+    <span style="display: none; color: red;" class="addToCart__button" id="addToCart__error">Error 🙁</span>
           
 <script>
     document.getElementById('add-to-cart-form-x').addEventListener('submit', async (event) => {
+
+        document.getElementById("addToCart__loader").style.display = 'block';
+
+        function updateCartCount() {
+            fetch('/cart.js')
+                .then(response => response.json())
+                .then(cart => {
+                  console.log(cart)
+                    document.getElementById('header__cartNumber').textContent = cart.item_count;
+                })
+                .catch(error => console.error('Error updating cart count:', error));
+        }
+
         event.preventDefault(); // Prevent form submission
         const formData = new FormData(event.target);
         const response = await fetch('/cart/add.js', {
@@ -122,9 +163,14 @@
         if (response.ok) {
             // Handle success (e.g., show a success message)
             console.log('Product added to cart successfully!');
+            updateCartCount();
+            document.getElementById("addToCart__loader").style.display = 'none';
+            document.getElementById("addToCart__success").style.display = 'block';
         } else {
             // Handle error (e.g., show an error message)
             console.error('Error adding product to cart.');
+            document.getElementById("addToCart__loader").style.display = 'none';
+            document.getElementById("addToCart__error").style.display = 'block';
         }
     });
 </script>

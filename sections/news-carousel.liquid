@@ -1,4 +1,16 @@
 <style>
+  .home__newsCarousel {
+    background: #BFEFFF;
+  }
+
+  .home__newsCarousel h2 {
+    color: #3F0791;
+    font-size: 3.3vw;
+    font-style: normal;
+    font-weight: 900;
+    margin: 0 0 8px;
+  }
+
   .home__newsCarousel_container {
     max-width: 1160px;
     margin: 0 auto;
@@ -29,31 +41,103 @@
   .news-metaobject.news h3 {
     color: green;
   }
+
+  .swiper {
+    width: 100%;
+    height: auto;
+  }
+
+  .swiper-slide h3 {
+    text-transform: capitalize;
+    font-weight: 600;
+  }
+
+  .swiper-slide {
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding: 32px;
+    height: auto;
+    color: #000;
+    background: #fff;
+  }
+
+  .swiper-slide * {
+    font-family: monospace !important;
+  }
+
+  .swiper-pagination {
+    margin-top: 24px;
+    position: relative;
+  }
+
+  .swiper-slide p {
+    line-height: 1.5;
+  }
+
+  .swiper {
+    margin-top: 40px;
+  }
 </style>
 
 <section class="home__newsCarousel">
   <div class="home__newsCarousel_container">
     <h2>News</h2>
 
-  <div class="home__newsCarousel_cards">
-    {% for custom_blocks in shop.metaobjects.custom_blocks.values %}
-      {% if custom_blocks.featured == true %}
-        <div class="news-metaobject {{custom_blocks.category.value.category.value}}">
-          <span class="home__newsCarousel_badge">Featured</span>
-          <h3>{{ custom_blocks.title.value }}</h3>
-          <p>{{ custom_blocks.description.value }}</p>
-        </div>
-      {% endif %}
-    {% endfor %}
+    <!-- Slider main container -->
+    <div class="swiper">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        {% for custom_blocks in shop.metaobjects.custom_blocks.values %}
+          {% if custom_blocks.featured == true %}
+            <div class="news-metaobject swiper-slide {{custom_blocks.category.value.category.value}}">
+              <span class="home__newsCarousel_badge">Featured</span>
+              <h3>{{ custom_blocks.title.value }}</h3>
+              <p>{{ custom_blocks.description.value }}</p>
+            </div>
+          {% endif %}
+        {% endfor %}
+    
+        {% for custom_blocks in shop.metaobjects.custom_blocks.values %}
+          {% if custom_blocks.featured != true %}
+            <div class="news-metaobject swiper-slide {{custom_blocks.category.value.category.value}}">
+              <h3>{{ custom_blocks.title.value }}</h3>
+              <p>{{ custom_blocks.description.value }}</p>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
 
-    {% for custom_blocks in shop.metaobjects.custom_blocks.values %}
-      {% if custom_blocks.featured != true %}
-        <div class="news-metaobject {{custom_blocks.category.value.category.value}}">
-          <h3>{{ custom_blocks.title.value }}</h3>
-          <p>{{ custom_blocks.description.value }}</p>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
   </div>
 </section>
+
+<script>
+  const swiper = new Swiper('.swiper', {
+    // Optional parameters
+    direction: 'horizontal',
+    loop: true,
+
+    slidesPerView: 3,
+    spaceBetween: 30,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+
+    autoplay: {
+      delay: 5000,
+    },
+  });
+</script>

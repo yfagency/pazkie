@@ -20,6 +20,29 @@
     animation-iteration-count: infinite;
     animation-timing-function: linear;
   }
+
+  button.shopify-payment-button__button.shopify-payment-button__button--unbranded {
+    line-height: 1 !important;
+    height: 48px;
+    width: 100%;
+  }
+
+  #add-to-cart-form-x button {
+    width: 100%;
+    display: block;
+    background: green;
+    transition: none;
+  }
+
+  #add-to-cart-form-x button:hover {
+    background: blue;
+    transition: none;
+  }
+
+  #add-to-cart-form-x button:disabled,
+  button:disabled.shopify-payment-button__button {
+    background: grey;
+  }
 </style>
 
 {% comment %}
@@ -47,8 +70,61 @@
         assign show_dynamic_checkout = true
       endif
     -%}
+    <br>
 
-    <product-form
+    <form id="add-to-cart-form-x">
+    <!-- Input fields for variant ID and quantity -->
+    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+    <input type="hidden" name="quantity" value="1" min="1">
+    <button class="shopify-payment-button__button shopify-payment-button__button--unbranded" type="submit" {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+      disabled
+    {% endif %} >Add to Cart</button>
+    </form>
+    <span style="display: none;" class="addToCart__button loading" id="addToCart__loader">Loading...</span>
+    <span style="display: none; color: green;" class="addToCart__button" id="addToCart__success">Success 😊</span>
+    <span style="display: none; color: red;" class="addToCart__button" id="addToCart__error">Error 🙁</span>
+          
+<script>
+    document.getElementById('add-to-cart-form-x').addEventListener('submit', async (event) => {
+
+        document.getElementById("addToCart__loader").style.display = 'block';
+
+        function updateCartCount() {
+            fetch('/cart.js')
+                .then(response => response.json())
+                .then(cart => {
+                  console.log(cart)
+                    document.getElementById('header__cartNumber').textContent = cart.item_count;
+                })
+                .catch(error => console.error('Error updating cart count:', error));
+        }
+
+        event.preventDefault(); // Prevent form submission
+        const formData = new FormData(event.target);
+        const response = await fetch('/cart/add.js', {
+            method: 'POST',
+            body: JSON.stringify({ items: [{ id: {{ product.selected_or_first_available_variant.id }}, quantity: 1, properties: { cart_index: {{ cart.item_count }} } }] }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (response.ok) {
+            // Handle success (e.g., show a success message)
+            console.log('Product added to cart successfully!');
+            updateCartCount();
+            document.getElementById("addToCart__loader").style.display = 'none';
+            document.getElementById("addToCart__success").style.display = 'block';
+        } else {
+            // Handle error (e.g., show an error message)
+            console.error('Error adding product to cart.');
+            document.getElementById("addToCart__loader").style.display = 'none';
+            document.getElementById("addToCart__error").style.display = 'block';
+        }
+    });
+</script>
+
+<product-form
       class="product-form"
       data-hide-errors="{{ gift_card_recipient_feature_active }}"
       data-section-id="{{ section.id }}"
@@ -99,81 +175,20 @@
               assign quantity_rule_soldout = true
             endif
           -%}
-          {% comment %} <button
-            id="ProductSubmitButton-{{ section_id }}"
-            type="submit"
-            name="add"
-            class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
-            {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
-              disabled
-            {% endif %}
-          >
-            <span>
-              {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
-                {{ 'products.product.sold_out' | t }}
-              {%- else -%}
-                add to el cart
-              {%- endif -%}
-            </span>
-            {%- render 'loading-spinner' -%}
-          </button> {% endcomment %}
 
           {%- if show_dynamic_checkout -%}
-            {{ form | payment_button }}
+            {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+              <button type="button" disabled class="shopify-payment-button__button shopify-payment-button__button--unbranded">
+                Sold Out
+              </button>
+            {%- else -%}
+              {{ form | payment_button }}
+            {%- endif -%}
           {%- endif -%}
         </div>
       {%- endform -%}
     </product-form>
-    <p>Custom add to cart</p>
-    <form id="add-to-cart-form-x">
-    <!-- Input fields for variant ID and quantity -->
-    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-    <input type="number" name="quantity" value="1" min="1">
-    <button type="submit">Add to Cart</button>
-    </form>
-    <span style="display: none;" class="addToCart__button loading" id="addToCart__loader">Loading...</span>
-    <span style="display: none; color: green;" class="addToCart__button" id="addToCart__success">Success 😊</span>
-    <span style="display: none; color: red;" class="addToCart__button" id="addToCart__error">Error 🙁</span>
-          
-<script>
-    document.getElementById('add-to-cart-form-x').addEventListener('submit', async (event) => {
 
-        document.getElementById("addToCart__loader").style.display = 'block';
-
-        function updateCartCount() {
-            fetch('/cart.js')
-                .then(response => response.json())
-                .then(cart => {
-                  console.log(cart)
-                    document.getElementById('header__cartNumber').textContent = cart.item_count;
-                })
-                .catch(error => console.error('Error updating cart count:', error));
-        }
-
-        event.preventDefault(); // Prevent form submission
-        const formData = new FormData(event.target);
-        const response = await fetch('/cart/add.js', {
-            method: 'POST',
-            body: JSON.stringify({ items: [{ id: {{ product.selected_or_first_available_variant.id }}, quantity: 1, properties: { cart_index: {{ cart.item_count }} } }] }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (response.ok) {
-            // Handle success (e.g., show a success message)
-            console.log('Product added to cart successfully!');
-            updateCartCount();
-            document.getElementById("addToCart__loader").style.display = 'none';
-            document.getElementById("addToCart__success").style.display = 'block';
-        } else {
-            // Handle error (e.g., show an error message)
-            console.error('Error adding product to cart.');
-            document.getElementById("addToCart__loader").style.display = 'none';
-            document.getElementById("addToCart__error").style.display = 'block';
-        }
-    });
-</script>
   {%- else -%}
     <div class="product-form">
       <div class="product-form__buttons form">

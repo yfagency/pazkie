@@ -3396,5 +3396,109 @@ details-disclosure>details {
   .nutritionalInfo__container>div {
     padding: 56px !important;
   }
+
+  .testimonials__container {
+    gap: 40px !important;
+  }
 }
 
+@media screen and (max-width: 600px) {
+  a.header__logo {
+    display: none;
+  }
+
+  .banner__box.gradient {
+    width: 100% !important;
+    max-width: 100%;
+    padding: 20px;
+    top: -10%;
+  }
+
+  .banner__content {
+    align-items: flex-start !important;
+  }
+
+  .banner,
+  .banner__media {
+    height: 800px !important;
+  }
+
+  .findYourFlavor__flavors {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+
+  .testimonials__container {
+    grid-template-columns: 1fr !important;
+    gap: 80px !important;
+  }
+
+  img.tryNow__cerealBox_1,
+  img.tryNow__cerealBox_2 {
+    max-width: 300px !important;
+  }
+
+  .reviews__container2 {
+    flex-direction: column;
+    align-items: baseline !important;
+    gap: 40px !important;
+    margin: 90px 20px 20px !important;
+  }
+
+  .reviews__container2 h2 {
+    font-size: 40px !important;
+  }
+
+  .reviews__cards {
+    flex-direction: column;
+    gap: 90px !important;
+  }
+
+  .reviews__cardItem {
+    width: 100% !important;
+  }
+
+  .happinessCta {
+    text-align: center;
+  }
+
+  .tryNow__mountain_1 {
+    left: -25% !important;
+    width: 70%;
+    bottom: 0 !important;
+  }
+
+  .tryNow__mountain_2 {
+    width: 40%;
+    bottom: 10% !important;
+  }
+
+  .tryNow__sphere {
+    top: -10%;
+    right: -30% !important;
+  }
+
+  .tryNow__mountain_3 {
+    width: 40%;
+    bottom: -25% !important;
+  }
+
+  .tryNow__mountain_4 {
+    width: 40%;
+    bottom: -25% !important;
+  }
+
+  .tryNow__sphere_2 {
+    left: 0 !important;
+    width: 50% !important;
+    bottom: -8% !important;
+  }
+
+  section.tryNow {
+    height: 100% !important;
+  }
+
+  .tryNow__center {
+    padding: 40% 0 70% !important;
+  }
+}

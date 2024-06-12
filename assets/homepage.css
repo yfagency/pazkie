@@ -1,0 +1,40 @@
+@media screen and (max-width: 1024px) {
+  .newFlavors a {
+    font-size: 24px !important;
+    line-height: 1 !important;
+  }
+
+  section.tryNow {
+    height: 100%;
+  }
+
+  .tryNow__center {
+    padding-bottom: 60%;
+  }
+
+  svg.tryNow__sphere {
+    right: -10%;
+    left: auto;
+  }
+
+  svg.tryNow__star_3 {
+    left: 10%;
+  }
+
+  .reviews__cardItem {
+    padding: 24px 24px 90px !important;
+  }
+
+  .reviews__cardItem h2 {
+    font-size: 24px !important;
+    line-height: 1.25 !important;
+  }
+
+  .happinessCta h2 {
+    font-size: 40px !important;
+  }
+
+  .home__newsCarousel {
+    padding: 0 56px;
+  }
+}

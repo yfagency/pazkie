@@ -3288,3 +3288,113 @@ details-disclosure>details {
     /* Prevent the border from growing on buttons when this effect is on. */
   }
 }
+
+/* MEDIA QUERIES */
+/* ALL */
+@media screen and (max-width: 768px) {
+  .header_menu>div:last-child {
+    gap: 40px;
+  }
+
+  .footer__container {
+    display: flex;
+    flex-direction: column;
+    padding: 56px !important;
+    gap: 40px;
+  }
+
+  .footer__container > div {
+    min-width: 100%;
+  }
+
+  .header_menu {
+    gap: 32px;
+  }
+}
+
+/* HOMEPAGE */
+@media screen and (max-width: 768px) {
+  .banner__box.gradient {
+    position: relative;
+    display: block;
+    max-width: 40%;
+    width: 100%;
+    top: -10%;
+    margin: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .banner__box h2 {
+    white-space: nowrap;
+  }
+
+  .banner__buttons {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px !important;
+  }
+
+  .banner__buttons a {
+    border-radius: 16px !important;
+  }
+  
+  .banner__media {
+    height: 600px !important;
+  }
+
+  .banner__content {
+    padding: 150px 56px 56px !important;
+    margin: 0 !important;
+    height: 100%;
+  }
+
+  .banner {
+    height: 600px !important;
+  }
+
+  img.tryNow__cerealBox_1,
+  img.tryNow__cerealBox_2 {
+    bottom: 0;
+  }
+
+  .tryNow h2 {
+    font-size: 72px !important;
+    line-height: 1 !important;
+  }
+
+  .tryNow {
+    height: 1000px !important;
+  }
+
+  .reviews__container2 {
+    margin: 215px 56px 56px !important;
+    gap: 0 !important;
+    justify-content: space-between !important;
+  }
+
+  .reviews__container2 h2 {
+    font-size: 48px !important;
+    line-height: 1.25 !important;
+    white-space: nowrap;
+  }
+
+  .reviews__container2 a {
+    white-space: nowrap;
+  }
+
+  .happinessCta {
+    flex-direction: column;
+    gap: 32px !important;
+  }
+
+  .nutritionalInfo__container {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .nutritionalInfo__container>div {
+    padding: 56px !important;
+  }
+}
+

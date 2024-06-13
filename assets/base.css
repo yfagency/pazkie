@@ -2152,7 +2152,7 @@ product-info .loading__spinner:not(.hidden)~*,
 
 /* section-header */
 .section-header.shopify-section-group-header-group {
-  z-index: 3;
+  z-index: 4;
 }
 
 .shopify-section-header-sticky {
@@ -3403,24 +3403,26 @@ details-disclosure>details {
 }
 
 @media screen and (max-width: 600px) {
-  a.header__logo {
-    display: none;
+
+  .header {
+    padding: 20px !important;
   }
 
   .banner__box.gradient {
     width: 100% !important;
     max-width: 100%;
-    padding: 20px;
-    top: -10%;
+    padding: 0;
+    top: 0%;
   }
 
   .banner__content {
     align-items: flex-start !important;
+    padding: 150px 20px 20px !important;
   }
 
   .banner,
   .banner__media {
-    height: 800px !important;
+    height: 100vh !important;
   }
 
   .findYourFlavor__flavors {
@@ -3501,4 +3503,26 @@ details-disclosure>details {
   .tryNow__center {
     padding: 40% 0 70% !important;
   }
+
+  .nutritionalInfo__container {
+    display: flex !important;
+    flex-direction: column-reverse;
+  }
+
+  .newFlavors {
+    display: none;
+  }
+
+  .home__newsCarousel_container h2 {
+    font-size: 40px !important;
+    line-height: 1 !important;
+  }
+
+  .home__newsCarousel {
+    padding: 20px;
+  }
+}
+
+.mobileHeader .header__logo svg {
+  fill: #3F0791;
 }

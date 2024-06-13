@@ -126,6 +126,85 @@
     justify-content: center;
     border-radius: 100px;
   }
+
+  .mobileHeader {
+    display: none;
+  }
+
+  .mobileMenu {
+    display: none;
+  }
+
+  @media screen and (max-width: 600px) {
+    .header {
+      display: none;
+    }
+
+    .mobileHeader {
+      display: block;
+      position: absolute;
+      width: 100%;
+      padding: 20px;
+      color: #fff;
+    }
+
+    .mobileHeader .header__logo svg {
+      width: 100px;
+    }
+
+    .mobileHeader__container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mobileMenu {
+      position: fixed;
+      top: 0;
+      background: #3F0791;
+      z-index: 9999;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobileMenu__button_close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .mobileMenu__items {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      font-size: 24px;
+      line-height: 1;
+      gap: 32px;
+      text-transform: capitalize;
+      font-weight: 500;
+    }
+
+    .mobileMenu {
+      display: none;
+    }
+
+    .mobileMenu a {
+      text-decoration: underline;
+      color: #fff;
+    }
+  }
+
+  .mobileMenu__button_open svg {
+    fill: #3F0791;
+  }
+
+  .mobileMenu__button_close svg {
+    fill: #fff;
+  }
 </style>
 
 {%- style -%}
@@ -245,6 +324,41 @@ endfor
       </div>
     </div>
   </header>
+
+  <header class="mobileHeader">
+    <div class="mobileHeader__container">
+      <a class="header__logo" href="/">{% include 'inline-logo-svg' %}</a>
+      <div id="mobileMenu__open" class="mobileMenu__button_open">
+        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M 4.25 3 A 1.250125 1.250125 0 1 0 4.25 5.5 L 19.75 5.5 A 1.250125 1.250125 0 1 0 19.75 3 L 4.25 3 z M 4.25 11 A 1.250125 1.250125 0 1 0 4.25 13.5 L 19.75 13.5 A 1.250125 1.250125 0 1 0 19.75 11 L 4.25 11 z M 4.25 18.5 A 1.250125 1.250125 0 1 0 4.25 21 L 19.75 21 A 1.250125 1.250125 0 1 0 19.75 18.5 L 4.25 18.5 z"></path>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <section id="mobileMenu" class="mobileMenu">
+    <div id="mobileMenu__close" class="mobileMenu__button_close">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 24 24">
+        <path d="M 4.2382812 2.9882812 A 1.250125 1.250125 0 0 0 3.3671875 5.1347656 L 10.232422 12 L 3.3613281 18.869141 A 1.2512475 1.2512475 0 1 0 5.1308594 20.638672 L 12 13.767578 L 18.865234 20.632812 A 1.250125 1.250125 0 1 0 20.632812 18.865234 L 13.767578 12 L 20.625 5.1425781 A 1.250125 1.250125 0 1 0 18.857422 3.375 L 12 10.232422 L 5.1347656 3.3671875 A 1.250125 1.250125 0 0 0 4.2382812 2.9882812 z"></path>
+        </svg>
+    </div>
+    <div class="mobileMenu__items">
+      <a href="/collections/cereal">shop cereal</a>
+      <a href="/cart">cart</a>
+    </div>
+  </section>
+
+  <script>
+    document.getElementById("mobileMenu__open").addEventListener('click', () => {
+      console.log("clicked");
+      document.getElementById("mobileMenu").style.display = "flex";
+    })
+
+    document.getElementById("mobileMenu__close").addEventListener('click', () => {
+      console.log("clicked");
+      document.getElementById("mobileMenu").style.display = "none";
+    })
+  </script>
 
 {%- if settings.cart_type == "notification" -%}
 {%- render 'cart-notification', color_scheme: section.settings.color_scheme, desktop_menu_type:

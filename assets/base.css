@@ -3552,3 +3552,52 @@ details-disclosure>details {
 .mobileHeader .header__logo svg {
   fill: #3F0791;
 }
+
+/* ANIMATIONS */
+@keyframes floating1 {
+  from {
+    transform: translateY(0);
+  } to {
+    transform: translateY(20%);
+  }
+}
+
+@keyframes floating2 {
+  from {
+    transform: translateY(0);
+  } to {
+    transform: translateY(30%);
+  }
+}
+
+@keyframes floating3 {
+  from {
+    transform: translateY(0);
+  } to {
+    transform: translateY(40%);
+  }
+}
+
+.floating1 {
+  animation: floating1 1s alternate-reverse infinite;
+}
+
+.floating2 {
+  animation: floating2 2s alternate-reverse infinite;
+}
+
+.floating3 {
+  animation: floating1 linear 3s alternate-reverse infinite;
+}
+
+.floating4 {
+  animation: floating3 4s alternate-reverse infinite;
+}
+
+.floating5 {
+  animation: floating3 2s alternate-reverse infinite;
+}
+
+.floating6 {
+  animation: floating1 2s alternate-reverse infinite;
+}

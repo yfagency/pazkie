@@ -43,47 +43,70 @@
       gap: 16px;
     }
   }
+
+  @keyframes rotating {
+    from {
+      transform: rotate(0);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .findYourFlavor__flavors img {
+    animation: rotating linear 30s infinite;
+  }
+
+  .findYourFlavor__flavors a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .findYourFlavor__flavors a:hover img {
+    animation-play-state: paused;
+  }
 </style>
 <section class="findYourFlavor">
   <div>
     <h2>Find your flavor</h2>
   </div>
   <div class="findYourFlavor__flavors">
-    <div>
+    <a href="/products/variety-4">
       <img src="https://cdn.shopify.com/s/files/1/0689/6717/0276/files/Variety.png?v=1715821598" />
       <p>Variety</p>
-    </div>
-    <div>
+    </a>
+    <a href="/products/fruity">
       <img src="https://cdn.shopify.com/s/files/1/0689/6717/0276/files/Fruity.png?v=1715821684" />
       <p>Fruity</p>
-    </div>
-    <div>
+    </a>
+    <a href="/products/peanut-butter">
       <img src="https://cdn.shopify.com/s/files/1/0689/6717/0276/files/Peanut_Butter.png?v=1715821779" />
       <p>Peanut Butter</p>
-    </div>
-    <div>
+    </a>
+    <a href="/products/cocoa">
       <img src="https://cdn.shopify.com/s/files/1/0689/6717/0276/files/Cocoa.png?v=1715821894" />
       <p>Cocoa</p>
-    </div>
-    <div>
+    </a>
+    <a href="/products/cinnamon-roll">
       <img src="https://cdn.shopify.com/s/files/1/0689/6717/0276/files/Cinnamon_Roll.png?v=1715821958" />
       <p>Cinnamon Roll</p>
-    </div>
-    <div>
+    </a>
+    <a href="/products/frosted">
       <img src="https://cdn.shopify.com/s/files/1/0689/6717/0276/files/Frosted.png?v=1715821993" />
       <p>Frosted</p>
-    </div>
-    <div>
+    </a>
+    <a href="/products/blueberry-muffin">
       <img src="https://cdn.shopify.com/s/files/1/0689/6717/0276/files/Blueberry_Muffin.png?v=1715822039" />
       <p>Blueberry Muffin</p>
-    </div>
-    <div>
+    </a>
+    <a href="/products/maple-waffle">
       <img src="https://cdn.shopify.com/s/files/1/0689/6717/0276/files/Maple_Waffle.png?v=1715822087" />
       <p>Maple Waffle</p>
-    </div>
-    <div>
+    </a>
+    <a href="/products/birthday-cake">
       <img src="https://cdn.shopify.com/s/files/1/0689/6717/0276/files/Birthday_Cake.png?v=1715822124" />
       <p>Birthday Cake</p>
-    </div>
+    </a>
   </div>
 </section>

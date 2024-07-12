@@ -79,10 +79,6 @@
       "type": "happiness-cta",
       "settings": {
       }
-    },
-    "news-carousel": {
-      "type": "news-carousel",
-      "settings": {}
     }
   },
   "order": [
